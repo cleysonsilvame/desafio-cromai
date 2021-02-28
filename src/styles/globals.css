@@ -17,4 +17,5 @@
 body {
   background: var(--background);
   font-family: 'Poppins', sans-serif;
+  height: 100vh;
 }

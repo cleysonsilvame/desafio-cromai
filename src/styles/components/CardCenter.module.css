@@ -1,0 +1,13 @@
+.container {
+  background: var(--gray-line);
+  border-radius: 6px;
+
+  max-width: 950px;
+  height: 75%;
+  overflow: auto;
+}
+
+.container > div:first-child {
+  background: var(--blue-dark);
+  border-radius: 6px;
+}
