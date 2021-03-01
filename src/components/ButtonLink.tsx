@@ -9,7 +9,7 @@ export default function ButtonLink(props) {
       <Nav.Link
         as="a"
         href={props.path}
-        className={`btn ${styles.button} mb-4 text-white d-flex align-items-center justify-content-center`}
+        className={`btn ${styles.button} text-white d-flex align-items-center justify-content-center`}
       >
         {props.title}
         <FaCaretRight />

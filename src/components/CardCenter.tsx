@@ -5,7 +5,7 @@ export default function CardCenter(props) {
   const Icon = props.icon;
 
   return (
-    <Container className={`${styles.container} `}>
+    <Container className={`${styles.container} mb-5`}>
       <Row className="p-2">
         <Col className="p-0 d-flex align-items-center">
           <Icon className="h2 mb-0 ml-2 text-white" />
@@ -15,7 +15,9 @@ export default function CardCenter(props) {
         </Col>
         <Col className="p-0"></Col>
       </Row>
-      {props.children}
+      <Row className="justify-content-center align-items-around">
+        {props.children}
+      </Row>
     </Container>
   );
 }

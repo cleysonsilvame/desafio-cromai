@@ -5,9 +5,14 @@
   max-width: 950px;
   height: 75%;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 .container > div:first-child {
   background: var(--blue-dark);
   border-radius: 6px;
+}
+
+.container > div:last-child {
+  height: 85%;
 }
