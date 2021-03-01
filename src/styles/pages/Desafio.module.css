@@ -1,3 +1,31 @@
 .container {
   height: 100vh;
 }
+
+.container button {
+  background: var(--green);
+  width: 380px;
+  height: 50px;
+  border: none;
+
+  transition: filter 0.2s;
+}
+
+.container button:hover {
+  background: var(--green);
+  filter: brightness(0.9);
+}
+
+.container button:active {
+  background-color: var(--green) !important;
+  filter: brightness(1);
+}
+
+.container button:focus {
+  background-color: var(--green);
+  filter: brightness(1);
+}
+
+.colInputCateto1 {
+  width: 100px;
+}
