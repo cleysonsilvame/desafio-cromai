@@ -1,80 +1,125 @@
 import Image from 'next/image';
 import { FormEvent, useState } from 'react';
-import { Button, Col, Container, Row, Form } from 'react-bootstrap';
+import {
+  Alert,
+  Button,
+  Col,
+  Container,
+  Form,
+  FormLabel,
+  Row,
+} from 'react-bootstrap';
 import { FaCalculator, FaCaretRight } from 'react-icons/fa';
 import CardCenter from '../components/CardCenter';
 import NavBar from '../components/NavBar';
+import api from '../services/api';
 import styles from '../styles/pages/Desafio.module.css';
 
 export default function Desafio() {
   const [hypotenuse, setHypotenuse] = useState(null);
-  const [side1, setSide1] = useState(4);
-  const [side2, setSide2] = useState(3);
+  const [oppositeSide, setOppositeSide] = useState(3);
+  const [adjacentSide, setAdjacentSide] = useState(4);
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleCaculate(e: FormEvent) {
     e.preventDefault();
 
-    const sumOfSides = Math.pow(side2, 2) + Math.pow(side1, 2);
+    api
+      .post('/calculate', {
+        opposite_side: oppositeSide,
+        adjacent_side: adjacentSide,
+      })
+      .then((res) => {
+        setHypotenuse(res.data.hypotenuse);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorMessage(String(err));
 
-    const squareRootOfTheHypotenuse = Math.sqrt(sumOfSides);
-
-    setHypotenuse(squareRootOfTheHypotenuse);
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 5000);
+      });
   }
 
   return (
     <Container className={styles.container}>
       <NavBar />
+      {errorMessage && (
+        <div className="d-flex justify-content-center">
+          <Alert variant="danger" className="w-25 text-center p-1">
+            {/* <Alert.Heading>Ocorreu um erro ☹!</Alert.Heading> */}
+            <p className="mb-0">{errorMessage}</p>
+          </Alert>
+        </div>
+      )}
       <CardCenter icon={FaCalculator} title="Desafio">
         <Form
           onSubmit={handleCaculate}
-          className={`m-4 p-3 justify-content-center align-items-center`}
+          className={`mt-4 d-flex flex-column justify-content-around align-items-center`}
         >
-          <Row className={`m-4 p-3 justify-content-center`}>
-            <Row>
-              <Col
-                className={`d-flex align-items-center justify-content-end p-0 ${styles.colInputCateto1}`}
-              >
-                <input
-                  type="number"
-                  className="form-control text-center"
-                  onChange={(e) => {
-                    setSide2(Number(e.target.value));
-                  }}
-                  value={side2}
-                />
+          <Row className="justify-content-center">
+            <Row className="w-100 justify-content-center">
+              <Col className="d-flex align-items-center justify-content-end p-3">
+                <div className="d-flex flex-column align-items-center">
+                  <FormLabel htmlFor="inputOppositeSide">
+                    Cateto Oposto
+                  </FormLabel>
+                  <input
+                    id="inputOppositeSide"
+                    type="number"
+                    step="0.01"
+                    className="form-control text-center"
+                    onChange={(e) => {
+                      setOppositeSide(Number(e.target.value));
+                    }}
+                    value={oppositeSide}
+                  />
+                </div>
               </Col>
-              <Col
-                className={`d-flex align-items-center p-0 ${styles.colInputHipotenusa}`}
-              >
+              <Col className="d-flex align-items-center p-0">
                 <Image
                   src="/triangle.svg"
                   alt="Triângulo para calcular"
-                  width={343}
-                  height={200}
+                  width={500}
+                  height={340}
                 />
               </Col>
-              <Col className="d-flex align-items-center p-0">
-                <input
-                  type="number"
-                  className="form-control text-center"
-                  onChange={(e) => {
-                    setHypotenuse(Number(e.target.value));
-                  }}
-                  value={hypotenuse}
-                />
+              <Col
+                className={`d-flex align-items-center p-0 ${styles.colInputHypot}`}
+              >
+                <div className="d-flex flex-column align-items-center">
+                  <FormLabel htmlFor="inputHypotenuse">Hipotenusa</FormLabel>
+                  <input
+                    id="inputHypotenuse"
+                    type="number"
+                    readOnly={true}
+                    className="form-control text-center"
+                    onChange={(e) => {
+                      setHypotenuse(Number(e.target.value));
+                    }}
+                    value={hypotenuse}
+                  />
+                </div>
               </Col>
             </Row>
-            <Row
-              className={`p-0 justify-content-center ${styles.colInputHipotenusa}`}
-            >
-              <input
-                type="number"
-                className="form-control text-center"
-                onChange={(e) => {
-                  setSide1(Number(e.target.value));
-                }}
-                value={side1}
-              />
+            <Row className="w-100 mt-2 justify-content-center">
+              <div className="d-flex flex-column align-items-center">
+                <FormLabel htmlFor="inputAdjacentSide">
+                  Cateto Adjacente
+                </FormLabel>
+
+                <input
+                  id="inputAdjacentSide"
+                  type="number"
+                  step="0.1"
+                  className="form-control text-center"
+                  onChange={(e) => {
+                    setAdjacentSide(Number(e.target.value));
+                  }}
+                  value={adjacentSide}
+                />
+              </div>
             </Row>
           </Row>
           <Row className="align-items-center justify-content-center">

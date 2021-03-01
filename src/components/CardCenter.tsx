@@ -15,9 +15,7 @@ export default function CardCenter(props) {
         </Col>
         <Col className="p-0"></Col>
       </Row>
-      <Row className="justify-content-center align-items-around">
-        {props.children}
-      </Row>
+      {props.children}
     </Container>
   );
 }

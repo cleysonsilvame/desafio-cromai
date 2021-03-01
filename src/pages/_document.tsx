@@ -10,7 +10,6 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
             rel="stylesheet"
           />
-          <title>Desafio Cromai | Pitágoras</title>
         </Head>
         <body>
           <Main />
