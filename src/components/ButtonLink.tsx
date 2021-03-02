@@ -3,7 +3,12 @@ import { Nav } from 'react-bootstrap';
 import { FaCaretRight } from 'react-icons/fa';
 import styles from '../styles/components/ButtonLink.module.css';
 
-export default function ButtonLink(props) {
+interface ButtonLinkProps {
+  title: string;
+  path: string;
+}
+
+export default function ButtonLink(props: ButtonLinkProps) {
   return (
     <Link href={props.path}>
       <Nav.Link

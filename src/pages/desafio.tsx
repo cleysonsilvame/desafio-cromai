@@ -16,7 +16,7 @@ import api from '../services/api';
 import styles from '../styles/pages/Desafio.module.css';
 
 export default function Desafio() {
-  const [hypotenuse, setHypotenuse] = useState(null);
+  const [hypotenuse, setHypotenuse] = useState(Number || undefined);
   const [oppositeSide, setOppositeSide] = useState(3);
   const [adjacentSide, setAdjacentSide] = useState(4);
   const [errorMessage, setErrorMessage] = useState('');

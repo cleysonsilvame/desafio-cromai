@@ -1,7 +1,15 @@
+import { ReactNode } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { IconType } from 'react-icons/lib';
 import styles from '../styles/components/CardCenter.module.css';
 
-export default function CardCenter(props) {
+interface CardCenterProps {
+  title: string;
+  children: ReactNode;
+  icon: IconType;
+}
+
+export default function CardCenter(props: CardCenterProps) {
   const Icon = props.icon;
 
   return (
