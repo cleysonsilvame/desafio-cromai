@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/cleysonsilvame/desafio-cromai/commits/master">
+  <a href="https://github.com/cleysonsilvame/desafio-cromai/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/cleysonsilvame/desafio-cromai.svg">
   </a>
 
